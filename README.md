@@ -256,57 +256,17 @@
     }
 ```
 
-🧱 Архитектура проекта
+## 🧱 Архитектура проекта
 
-Контроллеры: минимальная логика, делегируют в сервис
-
-Сервисы: бизнес-логика (ProductService, CategoryService)
-
-Репозитории: взаимодействие с Eloquent (ProductRepository)
-
-DI: интерфейсы и привязка в AppServiceProvider
-
-Формы: FormRequest с валидацией и логикой EAN-13
-
-API Resource: форматированный вывод с использованием whenLoaded()
-
-Очередь: ExportProductsJob + php artisan queue:work
-
-Экспорт: ProductsExport на базе maatwebsite/excel
-
-Проект построен с соблюдением принципов SOLID, гибкой архитектуры и возможностью масштабирования.
-
-📦 Зависимости и версии
-
-Проект использует следующие ключевые зависимости:
-
-Laravel: 10.x
-
-PHP: 8.2
-
-MySQL: 8
-
-maatwebsite/excel: ^3.1 — для экспорта в Excel
-
-Mockery: для unit-тестов и моков
-
-PHPUnit: встроенный тестовый фреймворк Laravel
-
-Docker: контейнеризация окружения
-
-📜 Документация API (OpenAPI)
-
-Документация API доступна в формате OpenAPI/Swagger:
-
-openapi.yaml — ручное описание эндпоинтов (если требуется)
-
-Примеры включают:
-
-GET/POST/PUT/DELETE для products
-
-GET/POST/PUT/DELETE для categories
-
-#### POST /api/v1/products/export
+- Контроллеры: минимальная логика, делегируют в сервис
+- Сервисы: бизнес-логика (ProductService, CategoryService)
+- Репозитории: взаимодействие с Eloquent (ProductRepository)
+- DI: интерфейсы и привязка в AppServiceProvider
+- Формы: FormRequest с валидацией и логикой EAN-13
+- API Resource: форматированный вывод с использованием whenLoaded()
+- Очередь: ExportProductsJob + php artisan queue:work
+- Экспорт: ProductsExport на базе maatwebsite/excel
+- Проект построен с соблюдением принципов SOLID, гибкой архитектуры и возможностью масштабирования.
 
 ---
 
