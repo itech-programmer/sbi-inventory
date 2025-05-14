@@ -13,11 +13,11 @@ RUN apt-get update && apt-get install -y \
     nano \
     libonig-dev \
     libxml2-dev \
-    libpq-dev \
     libcurl4-openssl-dev \
+    default-mysql-client \
     && pecl install redis \
     && docker-php-ext-enable redis \
-    && docker-php-ext-install pdo pdo_pgsql zip gd
+    && docker-php-ext-install pdo pdo_mysql zip gd
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 

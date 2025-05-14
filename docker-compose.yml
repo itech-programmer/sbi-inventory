@@ -26,29 +26,29 @@ services:
       - sbi-network
 
   db:
-    image: postgres:latest
+    image: mysql:latest
     container_name: db
     restart: unless-stopped
-    ports:
-      - "5432:5432"
     environment:
-      POSTGRES_DB: ${DB_DATABASE}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
     volumes:
-      - sbi-data:/var/lib/postgresql/data
+      - sbi-data:/var/lib/mysql
     networks:
       - sbi-network
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
     restart: unless-stopped
     ports:
       - "8080:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${DEFAULT_PASSWORD}
+      PMA_HOST: db
     depends_on:
       - db
     networks:

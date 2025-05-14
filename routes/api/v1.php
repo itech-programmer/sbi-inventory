@@ -1,6 +1,6 @@
 <?php
 
-use App\Contracts\ProductServiceInterface;
+use App\Contracts\Product\ProductServiceInterface;
 use app\Http\Controllers\Api\V1\CategoryController;
 use app\Http\Controllers\Api\V1\ProductController;
 use Illuminate\Support\Facades\Route;

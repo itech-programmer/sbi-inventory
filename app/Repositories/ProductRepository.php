@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Contracts\ProductRepositoryInterface;
+use App\Contracts\Product\ProductRepositoryInterface;
 use App\Models\Product;
 use Illuminate\Support\Collection;
 

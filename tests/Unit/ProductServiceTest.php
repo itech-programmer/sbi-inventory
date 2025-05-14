@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Contracts\ProductRepositoryInterface;
+use App\Contracts\Product\ProductRepositoryInterface;
 use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -38,6 +38,18 @@ class ProductServiceTest extends TestCase
 
         $this->assertCount(1, $result);
         $this->assertEquals('Test', $result->first()->name);
+    }
+
+    public function test_get_all_empty(): void
+    {
+        $this->mockRepository
+            ->shouldReceive('all')
+            ->once()
+            ->andReturn(collect());
+
+        $result = $this->service->getAll();
+
+        $this->assertCount(0, $result);
     }
 
     public function test_get_by_id_success(): void
@@ -116,6 +128,21 @@ class ProductServiceTest extends TestCase
         $this->assertEquals(200, $result->price);
     }
 
+    public function test_update_with_same_data(): void
+    {
+        $product = new Product(['price' => 100]);
+
+        $this->mockRepository
+            ->shouldReceive('update')
+            ->with($product, ['price' => 100])
+            ->once()
+            ->andReturn($product);
+
+        $result = $this->service->update($product, ['price' => 100]);
+
+        $this->assertEquals(100, $result->price);
+    }
+
     public function test_delete_product(): void
     {
         $product = new Product(['id' => 1]);
@@ -140,5 +167,11 @@ class ProductServiceTest extends TestCase
             ->andReturn(false);
 
         $this->assertFalse($this->service->destroy($product));
+    }
+
+    protected function tearDown(): void
+    {
+        Mockery::close();
+        parent::tearDown();
     }
 }

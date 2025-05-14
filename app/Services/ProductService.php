@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Contracts\ProductRepositoryInterface;
-use App\Contracts\ProductServiceInterface;
+use App\Contracts\Product\ProductRepositoryInterface;
+use App\Contracts\Product\ProductServiceInterface;
 use App\Jobs\ExportProductsJob;
 use App\Models\Product;
 use Illuminate\Support\Collection;
